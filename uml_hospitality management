@@ -1,0 +1,43 @@
+classDiagram
+    class Patient {
+        +String name
+        +String id
+        +String contactInfo
+        +makeAppointment()
+        +viewPrescription()
+    }
+
+    class Doctor {
+        +String name
+        +String specialty
+        +String id
+        +handleAppointment()
+        +writePrescription()
+    }
+
+    class Appointment {
+        +String date
+        +String time
+        +String status
+        +schedule()
+        +cancel()
+    }
+
+    class Prescription {
+        +String medication
+        +String dosage
+        +String instructions
+        +issue()
+    }
+
+    class Bill {
+        +double amount
+        +String paymentStatus
+        +generateBill()
+        +payBill()
+    }
+
+    Patient "1" -- "0..*" Appointment : has
+    Doctor "1" -- "0..*" Appointment : handles
+    Appointment "1" -- "1" Prescription : is associated with
+    Appointment "1" -- "1" Bill : generates
