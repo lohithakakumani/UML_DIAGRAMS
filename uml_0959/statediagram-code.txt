@@ -1,0 +1,17 @@
+flowchart TD
+  Start((Start)) --> Browsing["Browsing"]
+  Browsing --> AddingToCart["Adding to Cart"]
+  AddingToCart --> CartReview["Cart Review"]
+  CartReview --> Checkout["Checkout"]
+  Checkout --> PaymentProcessing["Payment Processing"]
+  PaymentProcessing --> PaymentSuccessful["Payment Successful"]
+  PaymentProcessing --> PaymentFailed["Payment Failed"]
+
+  PaymentSuccessful --> OrderConfirmed["Order Confirmed"]
+  OrderConfirmed --> OrderShipped["Order Shipped"]
+  OrderShipped --> OrderDelivered["Order Delivered"]
+  OrderDelivered --> End((End))
+
+  PaymentFailed --> CartReview
+  OrderConfirmed --> OrderCancelled["Order Cancelled"]
+  OrderCancelled --> End

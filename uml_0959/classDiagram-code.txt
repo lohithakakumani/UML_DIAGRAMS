@@ -1,0 +1,65 @@
+classDiagram
+    class User {
+        -String userId
+        -String name
+        -String email
+        -String password
+        -String address
+        +register()
+        +login()
+        +updateProfile()
+    }
+    class Product {
+        -String productId
+        -String name
+        -String description
+        -float price
+        -int stockQuantity
+        +addProduct()
+        +updateProduct()
+        +deleteProduct()
+    }
+    class Order {
+        -String orderId
+        -Date orderDate
+        -String orderStatus
+        +placeOrder()
+        +cancelOrder()
+        +trackOrder()
+    }
+    class OrderItem {
+        -String orderItemId
+        -int quantity
+        -float subtotal
+        +calculateSubtotal()
+    }
+    class ShoppingCart {
+        -String cartId
+        -float totalAmount
+        +addItem()
+        +removeItem()
+        +updateItem()
+        +calculateTotal()
+    }
+    class Payment {
+        -String paymentId
+        -Date paymentDate
+        -float paymentAmount
+        -String paymentMethod
+        +processPayment()
+        +refund()
+    }
+    class Admin {
+        -String adminId
+        -String name
+        -String email
+        +manageUsers()
+        +manageProducts()
+        +viewReports()
+    }
+    User "1" -- "1" ShoppingCart : owns
+    User "1" -- "0..*" Order : places
+    Order "1" -- "1..*" OrderItem : contains
+    Order "1" -- "1" Payment : processes
+    ShoppingCart "1" -- "0..*" Product : adds
+    Admin <|-- User : inherits

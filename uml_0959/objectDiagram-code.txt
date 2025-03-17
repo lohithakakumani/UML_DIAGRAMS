@@ -1,0 +1,39 @@
+classDiagram
+    class User {
+        +int userId = 101
+        +String name = "Alice"
+        +String email = "alice@example.com"
+        +String address = "123 Main St"
+    }
+    class ShoppingCart {
+        +int cartId = 5001
+        +float totalAmount = 250.00
+    }
+    class Product {
+        +int productId
+        +String name
+        +float price
+        +int stockQuantity
+    }
+    class Order {
+        +int orderId = 301
+        +Date orderDate = "2025-03-17"
+        +String orderStatus = "Shipped"
+    }
+    class OrderItem {
+        +int orderItemId = 401
+        +int quantity = 2
+        +float subtotal = 50.00
+    }
+    class Payment {
+        +int paymentId = 601
+        +Date paymentDate = "2025-03-17"
+        +float paymentAmount = 250.00
+        +String paymentMethod = "Credit Card"
+    }
+    
+    User "1" --> "1" ShoppingCart : owns
+    User "1" --> "1" Order : places
+    ShoppingCart "1" --> "*" Product : contains
+    Order "1" --> "*" OrderItem : contains
+    Order "1" --> "1" Payment : processes

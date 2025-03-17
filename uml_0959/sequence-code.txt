@@ -1,0 +1,38 @@
+sequenceDiagram
+  actor Customer
+  participant Browser as "Web Browser"
+  participant Web as "Web Server"
+  participant App as "Application Server"
+  participant DB as "Database"
+  participant Payment as "Payment Gateway"
+
+  Note over Customer, Browser: Customer Browses and Orders a Product
+
+  Customer->>Browser: Open Website
+  Browser->>Web: Request Homepage
+  Web->>App: Fetch Products
+  App->>DB: Query Product List
+  DB-->>App: Product Data
+  App-->>Web: Product List
+  Web-->>Browser: Render Homepage
+
+  Customer->>Browser: Add Product to Cart
+  Browser->>Web: Add to Cart Request
+  Web->>App: Add to Cart API
+  App->>DB: Update Cart
+  DB-->>App: Cart Updated
+  App-->>Web: Confirm Add to Cart
+  Web-->>Browser: Cart Updated
+
+  Customer->>Browser: Checkout and Pay
+  Browser->>Web: Checkout Request
+  Web->>App: Initiate Order
+  App->>DB: Save Order Details
+  DB-->>App: Order Saved
+  App->>Payment: Process Payment
+  Payment-->>App: Payment Confirmation
+  App->>DB: Update Order Status
+  DB-->>App: Order Completed
+  App-->>Web: Order Confirmation
+  Web-->>Browser: Show Order Confirmation
+  Browser-->>Customer: Display Success Page

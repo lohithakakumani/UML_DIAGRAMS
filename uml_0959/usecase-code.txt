@@ -1,0 +1,59 @@
+graph TB
+  subgraph EC["E-Commerce Website"]
+      Customer(("Customer"))
+      Admin(("Admin"))
+      PaymentGateway(("Payment Gateway"))
+
+      subgraph UC1["Customer Use Cases"]
+          RegisterAccount["Register Account"]
+          Login["Login"]
+          BrowseProducts["Browse Products"]
+          SearchProducts["Search Products"]
+          ViewProductDetails["View Product Details"]
+          AddToCart["Add to Cart"]
+          RemoveFromCart["Remove from Cart"]
+          Checkout["Checkout"]
+          TrackOrder["Track Order"]
+          CancelOrder["Cancel Order"]
+          WriteReview["Write Review"]
+      end
+
+      subgraph UC2["Admin Use Cases"]
+          AddProduct["Add Product"]
+          UpdateProduct["Update Product"]
+          DeleteProduct["Delete Product"]
+          ManageOrders["Manage Orders"]
+          ViewCustomerDetails["View Customer Details"]
+          GenerateReports["Generate Reports"]
+      end
+
+      subgraph UC3["Payment Gateway Use Cases"]
+          ProcessPayment["Process Payment"]
+          RefundPayment["Refund Payment"]
+      end
+  end
+
+  Customer --> RegisterAccount
+  Customer --> Login
+  Customer --> BrowseProducts
+  Customer --> SearchProducts
+  Customer --> ViewProductDetails
+  Customer --> AddToCart
+  Customer --> RemoveFromCart
+  Customer --> Checkout
+  Customer --> TrackOrder
+  Customer --> CancelOrder
+  Customer --> WriteReview
+
+  Admin --> AddProduct
+  Admin --> UpdateProduct
+  Admin --> DeleteProduct
+  Admin --> ManageOrders
+  Admin --> ViewCustomerDetails
+  Admin --> GenerateReports
+
+  PaymentGateway --> ProcessPayment
+  PaymentGateway --> RefundPayment
+
+  Checkout --> ProcessPayment
+  CancelOrder --> RefundPayment

@@ -1,0 +1,30 @@
+graph LR
+  client_device["Client Device"] 
+  web_browser["Web Browser / Mobile App"] 
+  web_server["Web Server"]
+  frontend_app["Frontend App"]
+  api_gateway["API Gateway"]
+  app_server["Application Server"]
+  auth_service["Auth Service"]
+  product_catalog_service["Product Catalog Service"]
+  cart_service["Cart Service"]
+  order_service["Order Service"]
+  payment_service["Payment Service"]
+  payment_gateway["Payment Gateway"]
+  external_payment_processor["External Payment Processor"]
+  ecommerce_db[("E-commerce DB")]
+
+  client_device -- HTTPS --> web_browser
+  web_browser -- HTTP --> frontend_app
+  frontend_app -- route --> api_gateway
+  api_gateway -- route --> auth_service
+  api_gateway -- route --> product_catalog_service
+  api_gateway -- route --> cart_service
+  api_gateway -- route --> order_service
+  order_service -- call --> payment_service
+  payment_service -- HTTPS --> external_payment_processor
+  auth_service -- read/write --> ecommerce_db
+  product_catalog_service -- read/write --> ecommerce_db
+  cart_service -- read/write --> ecommerce_db
+  order_service -- read/write --> ecommerce_db
+  payment_service -- read/write --> ecommerce_db

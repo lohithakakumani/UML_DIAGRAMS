@@ -1,0 +1,20 @@
+graph TD
+  A["User visits website"]
+  B["User logs in or registers"]
+  A --> B
+  C{"Login successful?"}
+  B --> C
+  C -->|"yes"| D["Browse/Search Products"]
+  C -->|"no"| E["Show Error - Retry Login"]
+  D --> F["View Product Details"]
+  F --> G["Add Product to Cart"]
+  H{"Checkout?"}
+  G --> H
+  H -->|"yes"| I["Enter Shipping Details"]
+  I --> J["Select Payment Method"]
+  J --> K["Make Payment"]
+  L{"Payment successful?"}
+  K --> L
+  L -->|"yes"| M["Order Confirmation"]
+  L -->|"no"| N["Payment Failed - Retry"]
+  H -->|"no"| O["Continue Shopping"]
