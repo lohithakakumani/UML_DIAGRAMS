@@ -1,0 +1,14 @@
+classDiagram
+    class User {
+        +String username
+        +String password
+        +login(): boolean
+    }
+    
+    class Order {
+        +int orderId
+        +Date date
+        +placeOrder(): void
+    }
+
+    User "1" --> "many" Order : places

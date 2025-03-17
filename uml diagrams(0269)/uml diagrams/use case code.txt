@@ -1,0 +1,4 @@
+graph TD
+    User -->|Logs in| Login
+    User -->|Places| Order
+    User -->|Logs out| Logout

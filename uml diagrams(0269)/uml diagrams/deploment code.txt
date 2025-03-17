@@ -1,0 +1,4 @@
+graph TD
+    Client["Client (Browser)"] -->|Requests| Server["Web Server"]
+    Server -->|Processes| AppServer["Application Server"]
+    AppServer -->|Queries| Database["Database Server"]

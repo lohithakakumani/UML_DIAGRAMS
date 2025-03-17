@@ -1,0 +1,4 @@
+stateDiagram-v2
+    [*] --> LoggedOut
+    LoggedOut --> LoggedIn : Login
+    LoggedIn --> LoggedOut : Logout
