@@ -1,0 +1,38 @@
+classDiagram
+  class TrafficControlSystem {
+      -String systemID = "TCS001"
+      -String location = "Downtown Intersection"
+      -String status = "Active"
+  }
+  class TrafficSignal {
+      -String signalID = "SIG123"
+      -String location = "Main St & 5th Ave"
+      -String currentState = "Red"
+  }
+  class Vehicle {
+      -String vehicleID = "VH456"
+      -String licensePlate = "XYZ1234"
+      -int speed = 70
+  }
+  class TrafficCamera {
+      -String cameraID = "CAM789"
+      -String location = "Main St & 5th Ave"
+      -bool isActive = true
+  }
+  class TrafficPolice {
+      -String officerID = "TP112"
+      -String name = "John Doe"
+      -String assignedArea = "Sector 5"
+  }
+  class EmergencyVehicle {
+      -String vehicleID = "EM999"
+      -String licensePlate = "ER911"
+      -int speed = 90
+      -String priorityLevel = "High"
+  }
+  
+  TrafficControlSystem "1" --> "1" TrafficSignal : controls
+  TrafficSignal "1" --> "*" Vehicle : manages
+  TrafficCamera "1" --> "1" TrafficSignal : monitors
+  TrafficPolice "1" --> "*" Vehicle : oversees
+  EmergencyVehicle "1" --> "*" TrafficPolice : assists

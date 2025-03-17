@@ -1,0 +1,26 @@
+stateDiagram-v2
+    direction LR
+    [*] --> Start
+
+    Start --> Idle : "System initializes"
+    Idle --> GreenLight : "System activates"
+    
+    state TrafficLightCycle {
+        GreenLight --> YellowLight : "Timer expires"
+        YellowLight --> RedLight : "Timer expires"
+        RedLight --> GreenLight : "Timer expires, no emergency"
+        RedLight --> TrafficViolationDetected : "Vehicle crosses on red"
+        TrafficViolationDetected --> RedLight : "Log violation, return"
+        RedLight --> EmergencyOverride : "Emergency vehicle detected"
+        EmergencyOverride --> GreenLight : "Allow emergency vehicle"
+    }
+
+    Idle --> End : "System shuts down"
+    
+    note right of Idle
+        The system is waiting for activation.
+    end note
+
+    note left of TrafficViolationDetected
+        A violation occurs when a vehicle crosses on red.
+    end note

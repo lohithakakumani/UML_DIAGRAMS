@@ -1,0 +1,22 @@
+flowchart TD
+    Start["Start Activity"] --> SystemInitialization["System Initialization"]
+    SystemInitialization --> TrafficControlSystem["Traffic Control System starts monitoring traffic"]
+
+    TrafficControlSystem --> DetectVehicle["Detect Vehicle at Intersection"]
+    DetectVehicle --> CheckSignalStatus["Check Traffic Signal Status"]
+
+    CheckSignalStatus -->|Green Light| AllowPass["Allow vehicle to pass"]
+    CheckSignalStatus -->|Red Light| ViolationDetection["Move to Violation Detection process"]
+
+    ViolationDetection --> VehicleCrossesRedLight{"Vehicle Crosses Red Light?"}
+    VehicleCrossesRedLight -->|Yes| CaptureViolation["Capture Violation"]
+    VehicleCrossesRedLight -->|No| ContinueOperation["Continue normal operation"]
+
+    CaptureViolation --> LogViolation["Log Violation in Traffic Control System"]
+    LogViolation --> GenerateTicket["Generate Violation Ticket"]
+    GenerateTicket --> NotifyOwner["Notify Vehicle Owner"]
+    NotifyOwner --> EndActivity["End Activity"]
+
+    AllowPass --> UpdateTrafficSignals["Update Traffic Signals Based on Traffic Conditions"]
+    UpdateTrafficSignals --> TrafficControlSystem
+    EndActivity --> TrafficControlSystem

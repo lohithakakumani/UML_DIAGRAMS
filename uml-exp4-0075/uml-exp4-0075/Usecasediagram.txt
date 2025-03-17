@@ -1,0 +1,33 @@
+graph TB
+  subgraph TMS["Traffic Management System"]
+      TrafficPolice(("Traffic Police"))
+      Vehicles(("Vehicles"))
+      Pedestrians(("Pedestrians"))
+      TrafficControlSystem(("Traffic Control System"))
+      EmergencyServices(("Emergency Services"))
+
+      subgraph UC1["Traffic Management Use Cases"]
+          ManageTrafficSignals["Manage Traffic Signals"]
+          MonitorRealTimeTraffic["Monitor Real-Time Traffic"]
+          DetectRuleViolations["Detect Rule Violations"]
+          ControlPedestrianCrossings["Control Pedestrian Crossings"]
+          ManageEmergencyVehiclePriority["Manage Emergency Vehicle Priority"]
+      end
+  end
+
+  TrafficPolice --> ManageTrafficSignals
+  TrafficPolice --> MonitorRealTimeTraffic
+  TrafficPolice --> DetectRuleViolations
+  TrafficPolice --> ControlPedestrianCrossings
+
+  Vehicles --> MonitorRealTimeTraffic
+  Vehicles --> ControlPedestrianCrossings
+  Vehicles --> ManageEmergencyVehiclePriority
+
+  Pedestrians --> ControlPedestrianCrossings
+
+  TrafficControlSystem --> ManageTrafficSignals
+  TrafficControlSystem --> MonitorRealTimeTraffic
+  TrafficControlSystem --> DetectRuleViolations
+
+  EmergencyServices --> ManageEmergencyVehiclePriority
