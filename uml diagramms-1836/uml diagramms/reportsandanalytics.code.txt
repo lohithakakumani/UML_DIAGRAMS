@@ -1,0 +1,32 @@
+classDiagram
+  class Report {
+      -String reportId
+      -String title
+      +generateReport() 
+      +viewReport() 
+  }
+  
+  class SalesData {
+      -int salesId
+      -float totalSales
+      +fetchSalesData() 
+      +analyzeTrends() 
+  }
+  
+  class UserActivity {
+      -String userId
+      -Date activityDate
+      +trackActivity() 
+      +viewActivity() 
+  }
+  
+  class AdminDashboard {
+      -String dashboardId
+      +displayReports() 
+      +viewUserActivity() 
+  }
+  
+  Report "1" --> "*" SalesData : includes
+  Report "1" --> "*" UserActivity : tracks
+  AdminDashboard "1" --> "*" Report : manages
+  AdminDashboard "1" --> "*" UserActivity : monitors

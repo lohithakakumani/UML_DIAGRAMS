@@ -1,0 +1,18 @@
+classDiagram
+    class Notification {
+        -String message
+        -String recipient
+        +notifyUser()
+    }
+    class EmailService {
+        -String emailAddress
+        +sendEmail(subject, body)
+    }
+    class SMSService {
+        -String phoneNumber
+        +sendSMS(message)
+    }
+    Notification "1" --> "1" EmailService : uses
+    Notification "1" --> "1" SMSService : uses
+    EmailService ..> Notification : sends
+    SMSService ..> Notification : sends

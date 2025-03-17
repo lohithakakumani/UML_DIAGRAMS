@@ -1,0 +1,33 @@
+classDiagram
+    class Show {
+        -String showId
+        -String title
+        -String genre
+        +createShow()
+        +updateShow()
+        +deleteShow()
+    }
+    class Schedule {
+        -String scheduleId
+        -Date date
+        +addShow(show)
+        +removeShow(show)
+        +getShows()
+    }
+    class TimeSlot {
+        -String timeSlotId
+        -String startTime
+        -String endTime
+        +bookTimeSlot()
+        +releaseTimeSlot()
+    }
+    class Movie {
+        -String movieId
+        -String name
+        -String director
+        +getDetails()
+        +updateDetails()
+    }
+    Show "1" --> "*" Schedule : has
+    Schedule "1" --> "*" TimeSlot : includes
+    Show "1" --> "1" Movie : features
