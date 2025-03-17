@@ -1,0 +1,16 @@
+C4Component
+title Component diagram for Airline Reservation System
+
+Container(ui, "User Interface", "Web and Mobile", "Allows users to search for flights, make bookings, and manage reservations.")
+Container(searchEngine, "Flight Search Engine", "Java", "Handles flight search queries and returns available flights.")
+Container(bookingSystem, "Booking System", "Java", "Manages the booking process and stores reservation details.")
+Container(paymentGateway, "Payment Gateway", "REST API", "Processes payments for flight bookings.")
+Container(notificationService, "Notification Service", "Node.js", "Sends notifications to users regarding their bookings.")
+ContainerDb(db, "Database", "Relational Database", "Stores user data, flight information, and booking records.")
+
+Rel(ui, searchEngine, "Uses", "HTTP/REST")
+Rel(ui, bookingSystem, "Uses", "HTTP/REST")
+Rel(bookingSystem, paymentGateway, "Uses", "HTTP/REST")
+Rel(bookingSystem, db, "Reads from and writes to", "SQL")
+Rel(notificationService, db, "Reads from", "SQL")
+Rel(notificationService, ui, "Sends notifications to", "WebSocket")

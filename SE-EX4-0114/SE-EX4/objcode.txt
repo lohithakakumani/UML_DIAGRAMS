@@ -1,0 +1,57 @@
+classDiagram
+    class Passenger {
+        -String passengerId
+        -String name
+        -String email
+        +bookFlight(flight: Flight)
+        +cancelReservation(reservation: Reservation)
+    }
+    
+    class Flight {
+        -String flightNumber
+        -String destination
+        -Date departureTime
+        +scheduleFlight()
+        +cancelFlight()
+    }
+    
+    class Ticket {
+        -String ticketId
+        -String seatNumber
+        +issueTicket()
+        +refundTicket()
+    }
+    
+    class Reservation {
+        -String reservationId
+        -Date reservationDate
+        +confirmReservation()
+        +modifyReservation()
+    }
+    
+    class Payment {
+        -String paymentId
+        -float amount
+        +processPayment()
+        +refundPayment()
+    }
+    
+    class Aircraft {
+        -String aircraftId
+        -String model
+        +maintainAircraft()
+    }
+    
+    class AirlineStaff {
+        -String staffId
+        -String name
+        +assistPassenger(passenger: Passenger)
+        +manageFlight(flight: Flight)
+    }
+    
+    Passenger "1" --> "*" Reservation : makes
+    Reservation "1" --> "1" Ticket : includes
+    Flight "1" --> "*" Ticket : has
+    Flight "1" o-- "1" Aircraft : uses
+    AirlineStaff "1" --> "*" Flight : manages
+    Payment "1" --> "1" Reservation : processes

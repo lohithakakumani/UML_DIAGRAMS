@@ -1,0 +1,29 @@
+C4Deployment
+title Deployment Diagram for Airline Reservation System
+
+Deployment_Node(clientDevice, "Client Device", "Web and Mobile Devices") {
+    Container(webApp, "Web Application", "React", "Allows users to search and book flights.")
+    Container(mobileApp, "Mobile Application", "Flutter", "Provides flight booking functionality on mobile devices.")
+}
+
+Deployment_Node(webServer, "Web Server", "Apache or Nginx") {
+    Container(api, "API Server", "Node.js", "Handles requests from the web and mobile applications.")
+}
+
+Deployment_Node(flightDbServer, "Flight Database Server", "PostgreSQL") {
+    ContainerDb(flightDb, "Flight Database", "Relational Database", "Stores flight information, schedules, and availability.")
+}
+
+Deployment_Node(paymentServer, "Payment Processing Server", "Secure Payment Gateway") {
+    Container(paymentApi, "Payment API", "Java", "Processes payment transactions securely.")
+}
+
+Deployment_Node(notificationServer, "Notification Server", "SMTP Server") {
+    Container(notificationService, "Notification Service", "Python", "Sends booking confirmations and alerts to users.")
+}
+
+Rel(webApp, api, "Makes API calls to", "HTTPS")
+Rel(mobileApp, api, "Makes API calls to", "HTTPS")
+Rel(api, flightDb, "Reads from and writes to", "JDBC")
+Rel(api, paymentApi, "Calls for payment processing", "HTTPS")
+Rel(api, notificationService, "Sends notifications", "HTTPS")

@@ -1,0 +1,12 @@
+flowchart TD   
+ A["Login"] --> B["Select Ticket"] 
+ B --> C{"Check Cancellation Policy"}   
+ C -->|"Eligible"| D["Request Refund"]    
+C -->|"Not Eligible"| E["Notify Passenger"]   
+ D --> F["Process Refund"]    
+F --> G["Notify Passenger"]  
+  E --> H{"Decision Point"}   
+ H -->|"Inform"| 
+I["Send Email Notification"]  
+  H -->|"Call"| J["Make Phone Call"]    
+I --> K["End"]    J --> K    G --> K
