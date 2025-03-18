@@ -1,8 +1,0 @@
-graph TD
-    A(Start) --> B[User Logs In]
-    B -->|Valid?| C{Check Credentials}
-    C -->|Yes| D[Show Dashboard]
-    C -->|No| E[Show Error Message]
-    D --> F[User Selects Action]
-    F --> G[Process Action]
-    G --> H(End)

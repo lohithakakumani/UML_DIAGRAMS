@@ -1,4 +1,0 @@
-graph LR
-    UI["User Interface"] --> Controller
-    Controller --> Service
-    Service --> Database
